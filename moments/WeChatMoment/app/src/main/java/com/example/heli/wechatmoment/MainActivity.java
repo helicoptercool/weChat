@@ -45,17 +45,17 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.tab_wechat_normal,
                 R.drawable.tab_wechat_selected,
                 "微信",
-                WeChatFragment.class, R.color.colorTabText
+                ContactsFragment.class, R.color.colorTabText
         ));
 
         mFragmentList.add(new TabItem(
-                R.drawable.tab_friend_normal,
-                R.drawable.tab_friend_selected,
+                R.drawable.tab_wechat_normal,
+                R.drawable.tab_wechat_selected,
                 "朋友",
-                FriendFragment.class, R.color.colorTabText
+                MomentFragment.class, R.color.colorTabText
         ));
 
-        mFragmentList.add(new TabItem(
+/*        mFragmentList.add(new TabItem(
                 R.drawable.tab_contacts_normal,
                 R.drawable.tab_contacts_selected,
                 "联系人",
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.tab_settings_normal,
                 R.drawable.tab_settings_selected, "设置",
                 SettingFragment.class, R.color.colorTabText
-        ));
+        ));*/
 
         mFragmentTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         // 绑定 FragmentManager

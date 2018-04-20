@@ -3,11 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bg_height">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/ic_launcher"
+            />
+        <ImageView
+            android:layout_width="@dimen/portrait_height"
+            android:layout_height="@dimen/portrait_height"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/ic_launcher"
+            />
+    </RelativeLayout>
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/momentRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/moments"
-        android:textSize="@dimen/text_size"/>
+        />
+
 </LinearLayout>
