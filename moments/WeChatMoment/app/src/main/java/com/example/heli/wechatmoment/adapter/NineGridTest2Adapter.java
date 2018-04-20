@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.heli.wechatmoment.Model;
+import com.example.heli.wechatmoment.entity.Model;
 import com.example.heli.wechatmoment.R;
 import com.example.heli.wechatmoment.views.NineGridTestLayout;
 

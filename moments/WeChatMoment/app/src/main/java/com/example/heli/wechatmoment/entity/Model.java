@@ -1,4 +1,4 @@
-package com.example.heli.wechatmoment;
+package com.example.heli.wechatmoment.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

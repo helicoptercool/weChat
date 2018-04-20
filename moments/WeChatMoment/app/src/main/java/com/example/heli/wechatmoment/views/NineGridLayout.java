@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.heli.wechatmoment.R;
@@ -29,7 +30,7 @@ public abstract class NineGridLayout extends ViewGroup {
     private int mTotalWidth;
     private int mSingleWidth;
 
-    private boolean mIsShowAll = false;
+    private boolean mIsShowAll = true;
     private boolean mIsFirst = true;
     private List<String> mUrlList = new ArrayList<>();
 
@@ -128,6 +129,21 @@ public abstract class NineGridLayout extends ViewGroup {
             LayoutParams params = getLayoutParams();
             params.height = mSingleWidth;
             setLayoutParams(params);
+
+
+//            NineGridLayout.this.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(getLayoutParams());
+//                    params.height = mSingleWidth;
+//                    NineGridLayout.this.setLayoutParams(params);
+//                }
+//
+//            });
+
+
+
+
             imageView.layout(0, 0, mSingleWidth, mSingleWidth);
 
             boolean isShowDefualt = displayOneImage(imageView, url, mTotalWidth);
@@ -167,12 +183,23 @@ public abstract class NineGridLayout extends ViewGroup {
     }
 
     private void layoutParams() {
-        int singleHeight = mSingleWidth;
+        final int singleHeight = mSingleWidth;
 
         //根据子view数量确定高度
         LayoutParams params = getLayoutParams();
         params.height = (int) (singleHeight * mRows + mSpacing * (mRows - 1));
         setLayoutParams(params);
+
+
+//        NineGridLayout.this.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(getLayoutParams());
+//                params.height = (int) (singleHeight * mRows + mSpacing * (mRows - 1));
+//                NineGridLayout.this.setLayoutParams(params);
+//            }
+//        });
+
     }
 
     private RatioImageView createImageView(final int i, final String url) {
@@ -269,7 +296,7 @@ public abstract class NineGridLayout extends ViewGroup {
 
     }
 
-    protected void setOneImageLayoutParams(RatioImageView imageView, int width, int height) {
+    protected void setOneImageLayoutParams(RatioImageView imageView, int width, final int height) {
         imageView.setLayoutParams(new LayoutParams(width, height));
         imageView.layout(0, 0, width, height);
 
@@ -277,6 +304,26 @@ public abstract class NineGridLayout extends ViewGroup {
 //        params.width = width;
         params.height = height;
         setLayoutParams(params);
+
+
+
+
+
+//        NineGridLayout.this.post(new Runnable() {
+//            @Override
+//            public void run() {
+////                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(getLayoutParams());
+////                params.height = height;
+////                setLayoutParams(params);
+//
+//                LayoutParams params=new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+//                params.height = height;
+//                NineGridLayout.this.setLayoutParams(params);
+//            }
+//
+//        });
+
+
     }
 
     private int getListSize(List<String> list) {

@@ -6,39 +6,51 @@
     android:padding="10dp">
 
     <ImageView
+        android:id="@+id/portrait"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@mipmap/ic_launcher" />
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginLeft="5dp"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="杰伦"
             android:textColor="@android:color/holo_blue_dark" />
 
         <TextView
+            android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="翻着我们的照片，想念若隐若现，去年的冬天，我们笑得很甜......\n—— 哎哟，不错哦!" />
 
-        <com.hmy.ninegridlayout.view.NineGridTestLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.example.heli.wechatmoment.views.NineGridTestLayout xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/layout_nine_grid"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             app:sapcing="4dp" />
 
         <TextView
+            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="10分钟前" />
+
+        <TextView
+            android:id="@+id/replay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="有一条评论" />
+
     </LinearLayout>
 </LinearLayout>
