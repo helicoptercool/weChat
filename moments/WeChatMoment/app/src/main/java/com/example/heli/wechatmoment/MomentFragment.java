@@ -1,7 +1,10 @@
 package com.example.heli.wechatmoment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,16 +30,18 @@ public class MomentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_moments, container, false);
+        initView();
         return mView;
     }
+
 
     private void initView() {
         mRecyclerView = (RecyclerView) mView.findViewById(R.id.momentRv);
 
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new NineGridTest2Adapter(this);
+        mAdapter = new NineGridTest2Adapter(getContext());
         mAdapter.setList(mList);
         mRecyclerView.setAdapter(mAdapter);
     }
