@@ -3,4 +3,15 @@
     <string name="contact">联系人</string>
     <string name="moments">朋友圈</string>
     <string name="setting">设置</string>
+    <string name="wechat">微信</string>
+    <string name="net_error">网络异常，显示测试图片</string>
+    <string name="json_error">json 解析异常，显示测试图片</string>
+    <string name="has_no_more">已经到底了</string>
+    <string name="loading">正在加载…</string>
+
+    //测试用文字
+    <string name="sender">jsmith</string>
+    <string name="content">感情有着极大的鼓舞力量，因此，它是一切道德行为的重要前提，谁要是没有强烈的志向，也就不能够热烈地把这个志向体现于事业中。 \n—— 凯洛夫</string>
+    <string name="release_time">10分钟前</string>
+    <string name="comment">评论:you are right!</string>
 </resources>

@@ -7,42 +7,24 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by heli on 2018/4/19.
- */
 
 public class TabItem
 {
     private final int mSelectTextcolor;
     private ImageView mIvTab;
 
-    /**
-     * 正常状态的图片
-     */
     private int imageNormal;
 
-    /**
-     * 选中状态的图片
-     */
     private int imageSelected;
 
     private TextView mTvTab;
 
-    /**
-     * 文字
-     */
     private String tabText;
 
-    /**
-     * Fragment
-     */
     private Class<? extends Fragment> fragmentClass;
 
     private View mTabView;
 
-    /**
-     * 新消息
-     */
     private TextView mTvNewMsg;
 
     public TabItem(int imageNormal, int imageSelected, String text, Class<? extends Fragment> fragmentClass,int selectTextcolor) {
@@ -57,20 +39,10 @@ public class TabItem
         return fragmentClass;
     }
 
-    /**
-     * 获取 tab 上的文字
-     *
-     * @return tab 上的文字
-     */
     public String getTabText() {
         return tabText;
     }
 
-    /**
-     * 设置选中
-     *
-     * @param checked 是否选中
-     */
     public void setChecked(boolean checked) {
         if (checked) {
             mTvTab.setTextColor(mSelectTextcolor);
@@ -91,9 +63,6 @@ public class TabItem
         return mTabView;
     }
 
-    /**
-     * 设置新消息数量
-     */
     public void setNewMsgCount(int count) {
         if (count > 0) {
             mTvNewMsg.setText(String.valueOf(count));

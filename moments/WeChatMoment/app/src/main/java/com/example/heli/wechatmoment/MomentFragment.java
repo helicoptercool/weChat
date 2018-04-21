@@ -8,23 +8,32 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.heli.wechatmoment.adapter.LoadMoreAdapterRecycler;
 import com.example.heli.wechatmoment.adapter.NineGridTest2Adapter;
+import com.example.heli.wechatmoment.adapter.RecyclerBaseAdapter;
+import com.example.heli.wechatmoment.adapter.RecyclerMomentAdapter;
 import com.example.heli.wechatmoment.entity.Model;
+import com.example.heli.wechatmoment.entity.Moment;
+import com.example.heli.wechatmoment.network.NetHelper;
+import com.example.heli.wechatmoment.network.NetRequestHelper;
+import com.example.heli.wechatmoment.network.NetResponseListener;
+import com.example.heli.wechatmoment.utils.Constants;
+import com.example.heli.wechatmoment.utils.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by heli on 2018/4/19.
- */
-
-public class MomentFragment extends Fragment {
+public class MomentFragment extends Fragment implements NetResponseListener {
 
     private RecyclerView mRecyclerView;
     private View mView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private NineGridTest2Adapter mAdapter;
+    private NineGridTest2Adapter nAdapter;
+    private RecyclerBaseAdapter mAdapter;
+    private RecyclerMomentAdapter adapter;
+    private Moment mMoment;
 
     private List<Model> mList = new ArrayList<>();
     private String[] mUrls = new String[]{"http://d.hiphotos.baidu.com/image/h%3D200/sign=201258cbcd80653864eaa313a7dca115/ca1349540923dd54e54f7aedd609b3de9c824873.jpg",
@@ -58,16 +67,30 @@ public class MomentFragment extends Fragment {
 
     private void initView() {
         mRecyclerView = (RecyclerView) mView.findViewById(R.id.momentRv);
-
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new NineGridTest2Adapter(getContext());
-        mAdapter.setList(mList);
-        mRecyclerView.setAdapter(mAdapter);
+        if (!NetHelper.isConnectNet(getContext())) {
+            loadTestData(getString(R.string.net_error));
+        } else {
+
+            adapter = new RecyclerMomentAdapter(getContext());
+            mAdapter = new LoadMoreAdapterRecycler(adapter, new LoadMoreAdapterRecycler.OnLoad() {
+                @Override
+                public void load(int pagePosition, int pageSize, LoadMoreAdapterRecycler.ILoadCallback callback) {
+//                NetRequestHelper.getInstance().request(Constants.REQUEST_TWEETS);
+                }
+            });
+            mRecyclerView.setAdapter(mAdapter);
+        }
     }
 
-    private void initData(){
+    private void initData() {
+        NetRequestHelper.getInstance().setResponseListener(this);
+        NetRequestHelper.getInstance().request(Constants.REQUEST_TWEETS);
+    }
+
+    private void initTestData() {
         Model model1 = new Model();
         model1.urlList.add(mUrls[0]);
         mList.add(model1);
@@ -75,10 +98,6 @@ public class MomentFragment extends Fragment {
         Model model2 = new Model();
         model2.urlList.add(mUrls[4]);
         mList.add(model2);
-//
-//        NineGridTestModel model3 = new NineGridTestModel();
-//        model3.urlList.add(mUrls[2]);
-//        mList.add(model3);
 
         Model model4 = new Model();
         for (int i = 0; i < mUrls.length; i++) {
@@ -112,4 +131,30 @@ public class MomentFragment extends Fragment {
         }
         mList.add(model8);
     }
+
+    @Override
+    public void getUser(String userStr) {
+
+    }
+
+    @Override
+    public void getTweets(String tweetsStr) {
+        String correctStr = tweetsStr.substring(1, tweetsStr.length() - 1).trim();
+        try {
+            mMoment = JsonUtil.parseJsonWithGson(correctStr, Moment.class);
+            adapter.appendData(mMoment.getMoments());
+        } catch (Exception e) {
+            e.printStackTrace();
+            loadTestData(getString(R.string.json_error));
+        }
+    }
+
+    private void loadTestData(String reason) {
+        Toast.makeText(getContext(), reason, Toast.LENGTH_LONG).show();
+        initTestData();
+        nAdapter = new NineGridTest2Adapter(getContext());
+        nAdapter.setList(mList);
+        mRecyclerView.setAdapter(nAdapter);
+    }
+
 }

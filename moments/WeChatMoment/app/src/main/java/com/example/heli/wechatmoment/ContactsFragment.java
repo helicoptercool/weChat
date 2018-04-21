@@ -6,9 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by heli on 2018/4/19.
- */
+import com.example.heli.wechatmoment.network.NetRequestHelper;
+import com.example.heli.wechatmoment.utils.Constants;
 
 public class ContactsFragment extends Fragment {
 
@@ -17,5 +16,16 @@ public class ContactsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        testRequest();
+    }
+
+    private void testRequest(){
+        NetRequestHelper.getInstance().request(Constants.REQUEST_USER);
+//        NetRequestHelper.getInstance().request(Constants.REQUEST_TWEETS);
     }
 }

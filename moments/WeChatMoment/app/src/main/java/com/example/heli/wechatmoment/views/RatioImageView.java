@@ -7,11 +7,10 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.ImageView;
 
 import com.example.heli.wechatmoment.R;
 
-public class RatioImageView extends ImageView {
+public class RatioImageView extends android.support.v7.widget.AppCompatImageView {
 
     private float mRatio = 0f;
 
@@ -31,11 +30,6 @@ public class RatioImageView extends ImageView {
         super(context);
     }
 
-    /**
-     * 设置ImageView的宽高比
-     *
-     * @param ratio
-     */
     public void setRatio(float ratio) {
         mRatio = ratio;
     }
